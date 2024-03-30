@@ -154,7 +154,7 @@ def YAMNet(
     return model
 
 
-def class_names(class_map_csv):
+def class_namesTL(class_map_csv):
   """Read the class name definition file and return a list of strings."""
   with open(class_map_csv) as csv_file:
     reader = csv.reader(csv_file)
