@@ -1,23 +1,13 @@
-import numpy as np
-import tensorflow as tf
-import tensorflow_hub as hub
-#import tensorflow_hub as hub
+import json
+
 import pyaudio
-from matplotlib import pyplot as plt
-import pandas as pd
 import sounddevice as sd
-import pandas as pd
-import wave
+
+import response
 from keras_yamnet import params
 from keras_yamnet.yamnet import YAMNet, class_namesTL
 from keras_yamnet.preprocessing import preprocess_input
-import csv
-
-from plot import Plotter
-from scipy.io import wavfile
-from IPython.display import Audio
 import heapq
-import os
 
 #Importing final.py
 from final import *
@@ -72,8 +62,8 @@ classLabels = ["Speech","Child speech, kid speaking","Conversation","Narration, 
 
 
 
-def getArray():
-
+# async def classify(websocket):  #when using websockets
+def classify():
     
     ################### SETTINGS ###################
     plt_classes = [0,132,420,494,62] # Speech, Music, Explosion, Silence 
@@ -83,7 +73,7 @@ def getArray():
     RATE = params.SAMPLE_RATE
     WIN_SIZE_SEC = 0.975
     CHUNK = int(WIN_SIZE_SEC * RATE)
-    RECORD_SECONDS = 20
+    RECORD_SECONDS = 10
 
     print(sd.query_devices())
     MIC = None
@@ -171,7 +161,7 @@ def getArray():
             label = classLabels[highest_with_index2[j][1]]
             recordings_list.append([i,label])
             # res = response.PredictResponse(label,distance)
-            # await websocket.send(res)
+            # await websocket.send(label)
             print(f'The sound {label} is {distance}')
         recordings_list.append([i,label])
         
@@ -217,10 +207,9 @@ def getArray():
     #         names.append(classLabels[highest_with_index[i][1]])
 
     # print(output_filename.type)
-    return recordings_list, output_filename
-
-
-if __name__ == "__main__":
-
-    getArray()
-    print(len(soundSorterMatcher()))  # Function from final.py which returns that array of sound labels which are closest.
+    print(recordings_list)
+    # classifiedProximityList = soundSorterMatcher()
+    # res = response.PredictResponse(classifiedProximityList)
+    # res = json.dumps(res.__dict__)
+    # await websocket.send(res)
+    return recordings_list
