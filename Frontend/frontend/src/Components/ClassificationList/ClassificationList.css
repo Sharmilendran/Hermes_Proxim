@@ -1,0 +1,41 @@
+.member-name {
+    white-space: nowrap;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+  }
+  
+  .member-email {
+    white-space: nowrap;
+    width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: darkgreen;
+    font-size: 12;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .member-email:hover {
+    overflow: visible;
+  }
+  
+  .member-name:hover {
+    overflow: visible;
+  }
+  
+  .teamMemberContainer {
+    margin-top: 50px;
+    width: 500px;
+  }
+  
+  .teamHeading {
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .table {
+    height: 500px;
+    width: 500px;
+  }
