@@ -4,13 +4,14 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
+import "./ClassificationList.css"
 
 const ClassificationList = ({ classifications }) => {
 
     return (
         <div className="teamMemberContainer">
             <div>
-                <TableContainer style={{ height: 500, width: 500 }}>
+                <TableContainer>
                     <Table size="medium" aria-label="a dense table" border="solid">
                         <TableHead>
                             <TableCell>

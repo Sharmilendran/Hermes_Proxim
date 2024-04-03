@@ -27,8 +27,6 @@
   
   .teamMemberContainer {
     margin-top: 50px;
-    margin-left: 600px;
-    width: 500px;
   }
   
   .teamHeading {
@@ -38,5 +36,4 @@
   
   .table {
     height: 500px;
-    width: 500px;
   }
