@@ -1,11 +1,13 @@
-import json
-
+import matplotlib.pyplot as plt
 import numpy as np
 import librosa
+from scipy.signal import wiener
 import pandas as pd
 from statistics import NormalDist
-
-import scipy
+from sklearn.decomposition import PCA
+from librosa import load as load_audio
+from librosa import stft, amplitude_to_db
+from librosa.display import specshow
 from scipy.ndimage import label as label_features
 from scipy.ndimage import maximum_position as extract_region_maximums
 import tensorflow as tf
@@ -13,11 +15,16 @@ import tensorflow_hub as hub
 import csv
 from IPython.display import Audio
 from scipy.io import wavfile
+import IPython
 import noisereduce as nr
+import soundfile as sf
 from noisereduce.generate_noise import band_limited_noise
+import urllib.request
+import io
+# import cv2
 import wave
 import os
-
+import response
 ####### Methods to get CSV Files ################
 
 # Load the model.
@@ -393,5 +400,10 @@ def soundSorterMatcher():
     dfFinalFrame = pd.DataFrame(FinalSetter, columns=["Class", "Proximity"])
     finalDictionary = dfFinalFrame.to_dict()
 
-    print("final dictionary ",finalDictionary)
-    return finalDictionary
+    resp = []
+    for classification in finalDictionary["Class"]:
+        for proximity in finalDictionary["Proximity"]:
+            proxRes = response.ProximityResponse(classification, proximity)
+            resp.append(proxRes.__dict__)
+    print("final dictionary ", resp)
+    return resp
